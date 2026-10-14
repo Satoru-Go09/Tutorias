@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plataforma de Tutorías - U.E. Federico González Suárez</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #0b2545; /* Azul marino institucional */
+            --secondary-color: #134074; /* Azul intermedio */
+            --accent-color: #c59b27; /* Dorado / Amarillo institucional */
+            --bg-light: #f4f7f6;
+            --text-color: #333;
+            --light-text: #fff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-light);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: var(--light-text);
+            padding: 20px 0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo {
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--accent-color);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            background-color: white;
+        }
+
+        .site-title {
+            margin-left: 20px;
+        }
+
+        .site-title h1 {
+            font-size: 1.8rem;
+            margin-bottom: 5px;
+            color: #ffffff;
+        }
+
+        .site-title p {
+            font-size: 1rem;
+            color: var(--accent-color);
+            font-weight: 600;
+        }
+
+        .hero {
+            background: linear-gradient(rgba(11, 37, 69, 0.85), rgba(19, 64, 116, 0.75)), url('https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            padding: 80px 0;
+            text-align: center;
+            color: white;
+        }
+
+        .hero h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 30px;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background-color: var(--accent-color);
+            color: var(--primary-color);
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            background-color: #dcb338;
+        }
+
+        /* Sección de Búsqueda de Materias */
+        .search-section {
+            padding: 50px 0 20px 0;
+            background-color: white;
+            text-align: center;
+        }
+
+        .search-box {
+            max-width: 600px;
+            margin: 0 auto;
+            display: flex;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            border-radius: 30px;
+            overflow: hidden;
+            border: 2px solid var(--primary-color);
+        }
+
+        .search-box input {
+            flex: 1;
+            padding: 15px 20px;
+            border: none;
+            outline: none;
+            font-size: 1rem;
+        }
+
+        .search-box button {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 0 25px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            transition: background 0.3s;
+        }
+
+        .search-box button:hover {
+            background-color: var(--secondary-color);
+        }
+
+        .services {
+            padding: 40px 0 60px 0;
+            background-color: white;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .section-title h2 {
+            font-size: 2.2rem;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            width: 60%;
+            height: 3px;
+            background-color: var(--accent-color);
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 2px;
+        }
+
+        .section-title p {
+            color: #666;
+            font-size: 1.1rem;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .service-card {
+            background-color: #fff;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            border-top: 5px solid var(--primary-color);
+            border: 1px solid #eaeaea;
+            cursor: pointer;
+        }
+
+        .service-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.12);
+            border-color: var(--accent-color);
+        }
+
+        .service-icon {
+            width: 70px;
+            height: 70px;
+            background-color: var(--primary-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 25px auto 15px;
+            color: white;
+            font-size: 1.8rem;
+        }
+
+        .service-content {
+            padding: 0 25px 25px;
+            text-align: center;
+        }
+
+        .service-content h3 {
+            font-size: 1.4rem;
+            margin-bottom: 10px;
+            color: var(--primary-color);
+        }
+
+        .service-content p {
+            color: #666;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .subject-badge {
+            display: inline-block;
+            background-color: #e6ecf5;
+            color: var(--secondary-color);
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        /* Sección de Maestros y Disponibilidad */
+        .teachers-section {
+            padding: 70px 0;
+            background-color: #eef2f7;
+            border-top: 1px solid #e0e0e0;
+        }
+
+        .empty-teachers-box {
+            background: white;
+            padding: 50px 30px;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            max-width: 700px;
+            margin: 0 auto;
+            border: 2px dashed #cbd5e1;
+        }
+
+        .empty-teachers-box i {
+            font-size: 3.5rem;
+            color: #94a3b8;
+            margin-bottom: 20px;
+        }
+
+        .empty-teachers-box h3 {
+            color: var(--primary-color);
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+
+        .empty-teachers-box p {
+            color: #64748b;
+            font-size: 1rem;
+        }
+
+        /* Sección de Integrantes */
+        .features {
+            padding: 80px 0;
+            background-color: var(--bg-light);
+        }
+
+        .features-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .features-content {
+            flex: 1;
+            min-width: 300px;
+            padding-right: 40px;
+        }
+
+        .features-content h2 {
+            font-size: 2.2rem;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+
+        .features-content > p {
+            color: #666;
+            margin-bottom: 25px;
+            font-size: 1.05rem;
+        }
+
+        .feature-list {
+            list-style: none;
+        }
+
+        .feature-item {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            background: white;
+            padding: 15px 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.04);
+            border-left: 5px solid var(--accent-color);
+        }
+
+        .feature-icon {
+            width: 40px;
+            height: 40px;
+            background-color: var(--primary-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            color: white;
+            flex-shrink: 0;
+            font-size: 1.1rem;
+        }
+
+        .feature-text h4 {
+            color: var(--primary-color);
+            font-size: 1.1rem;
+            margin-bottom: 2px;
+        }
+
+        .feature-text p {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .features-image {
+            flex: 1;
+            min-width: 300px;
+            text-align: center;
+        }
+
+        .features-image img {
+            max-width: 280px;
+            height: auto;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+            background-color: white;
+            padding: 10px;
+            border: 2px solid var(--accent-color);
+        }
+
+        footer {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 40px 0 20px;
+            text-align: center;
+        }
+
+        footer p {
+            opacity: 0.8;
+            font-size: 0.95rem;
+        }
+
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            .logo-container {
+                margin-bottom: 15px;
+                flex-direction: column;
+            }
+            .site-title {
+                margin-left: 0;
+                margin-top: 10px;
+            }
+            .features-content {
+                padding-right: 0;
+                margin-bottom: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container header-content">
+            <div class="logo-container">
+                <img src="nuevo_logo.png" alt="FGS Logo" class="logo">
+                <div class="site-title">
+                    <h1>U.E. FEDERICO GONZÁLEZ SUÁREZ</h1>
+                    <p>Plataforma de Gestión de Tutorías Académicas - Durán</p>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <h2>Impulsa tu Éxito Académico</h2>
+            <p>Sistema institucional de tutorías diseñado para fortalecer el aprendizaje de los estudiantes de Bachillerato de nuestra institución.</p>
+            <a href="#materias" class="cta-button">Ver Materias Disponibles</a>
+        </div>
+    </section>
+
+    <!-- Barra de búsqueda de materias -->
+    <section class="search-section" id="materias">
+        <div class="container">
+            <div class="section-title" style="margin-bottom: 25px;">
+                <h2>Buscar Materias y Tutores</h2>
+                <p>Haz clic en cualquiera de las asignaturas para consultar los docentes y sus horarios de disponibilidad</p>
+            </div>
+            <div class="search-box">
+                <input type="text" id="searchInput" placeholder="" onkeyup="filterSubjects()">
+                <button><i class="fas fa-search"></i></button>
+            </div>
+        </div>
+    </section>
+
+    <section class="services">
+        <div class="container">
+            <div class="services-grid" id="subjectsGrid">
+                
+                <div class="service-card" data-name="matematicas calculo algebra" onclick="selectSubject('Matemáticas')">
+                    <div class="service-icon"><i class="fas fa-square-root-alt"></i></div>
+                    <div class="service-content">
+                        <h3>Matemáticas</h3>
+                        <p>Refuerzo en álgebra, trigonometría, cálculo y resolución de problemas analíticos orientados al nivel bachillerato.</p>
+                        <span class="subject-badge">Área Exactas</span>
+                    </div>
+                </div>
+
+                <div class="service-card" data-name="fisica cinetica dinamica" onclick="selectSubject('Física')">
+                    <div class="service-icon" style="background-color: var(--secondary-color);"><i class="fas fa-atom"></i></div>
+                    <div class="service-content">
+                        <h3>Física</h3>
+                        <p>Asesorías en cinemática, leyes de Newton, vectores, energía y experimentos prácticos de laboratorio.</p>
+                        <span class="subject-badge">Área Exactas</span>
+                    </div>
+                </div>
+
+                <div class="service-card" data-name="quimica reacciones compuestos" onclick="selectSubject('Química')">
+                    <div class="service-icon" style="background-color: #27ae60;"><i class="fas fa-flask"></i></div>
+                    <div class="service-content">
+                        <h3>Química</h3>
+                        <p>Estudio de tabla periódica, estequiometría, nomenclatura inorgánica/orgánica y enlaces químicos.</p>
+                        <span class="subject-badge">Área Naturales</span>
+                    </div>
+                </div>
+
+                <div class="service-card" data-name="ingles speaking grammar" onclick="selectSubject('Inglés')">
+                    <div class="service-icon" style="background-color: #d35400;"><i class="fas fa-language"></i></div>
+                    <div class="service-content">
+                        <h3>Inglés</h3>
+                        <p>Práctica de gramática, comprensión lectora, redacción y conversación orientada al dominio del idioma.</p>
+                        <span class="subject-badge">Idiomas</span>
+                    </div>
+                </div>
+
+                <div class="service-card" data-name="lengua literatura redaccion ensayos" onclick="selectSubject('Lengua y Literatura')">
+                    <div class="service-icon" style="background-color: #8e44ad;"><i class="fas fa-book-reader"></i></div>
+                    <div class="service-content">
+                        <h3>Lengua y Literatura</h3>
+                        <p>Mejora de ortografía, análisis literario, técnicas de redacción, ensayos y normas APA.</p>
+                        <span class="subject-badge">Humanidades</span>
+                    </div>
+                </div>
+
+                <div class="service-card" data-name="biologia ciencias vida celula" onclick="selectSubject('Biología')">
+                    <div class="service-icon" style="background-color: #16a085;"><i class="fas fa-dna"></i></div>
+                    <div class="service-content">
+                        <h3>Biología</h3>
+                        <p>Comprensión celular, genética, anatomía, ecología y procesos biológicos de los seres vivos.</p>
+                        <span class="subject-badge">Área Naturales</span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección de Docentes / Disponibilidad -->
+    <section class="teachers-section" id="docentes">
+        <div class="container">
+            <div class="section-title">
+                <h2>Docentes Disponibles</h2>
+                <p id="selectedSubjectTitle">Selecciona una materia arriba para ver los docentes asignados y sus horarios.</p>
+            </div>
+
+            <div class="empty-teachers-box">
+                <i class="fas fa-user-slash"></i>
+                <h3 id="emptyTitle">No hay docentes registrados</h3>
+                <p id="emptyMessage">Actualmente no existen docentes registrados para esta asignatura en el sistema.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección de Integrantes -->
+    <section class="features">
+        <div class="container features-container">
+            <div class="features-content">
+                <h2>Integrantes del Proyecto</h2>
+                <p>Estudiantes desarrolladores de la plataforma de tutorías para el proyecto de grado BGU:</p>
+                <ul class="feature-list">
+                    <li class="feature-item">
+                        <div class="feature-icon"><i class="fas fa-user-graduate"></i></div>
+                        <div class="feature-text">
+                            <h4>Samuel Armijos Guerrero</h4>
+                            <p>Estudiante Desarrollador</p>
+                        </div>
+                    </li>
+                    <li class="feature-item">
+                        <div class="feature-icon"><i class="fas fa-user-graduate"></i></div>
+                        <div class="feature-text">
+                            <h4>Andres Herbas Bedon</h4>
+                            <p>Estudiante Desarrollador</p>
+                        </div>
+                    </li>
+                    <li class="feature-item">
+                        <div class="feature-icon"><i class="fas fa-user-graduate"></i></div>
+                        <div class="feature-text">
+                            <h4>Justin Riera Soledispa</h4>
+                            <p>Estudiante Desarrollador</p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="features-image">
+                <img src="nuevo_logo.png" alt="Escudo Colegio Federico González Suárez">
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Unidad Educativa Particular "Federico González Suárez" - Durán. Proyecto de Grado BGU.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Búsqueda en tiempo real de materias
+        function filterSubjects() {
+            let input = document.getElementById('searchInput').value.toLowerCase();
+            let cards = document.querySelectorAll('.service-card');
+
+            cards.forEach(card => {
+                let keywords = card.getAttribute('data-name');
+                let title = card.querySelector('h3').innerText.toLowerCase();
+                if (keywords.includes(input) || title.includes(input)) {
+                    card.style.display = "block";
+                } else {
+                    card.style.display = "none";
+                }
+            });
+        }
+
+        // Selección de materia y desplazamiento a la sección de profesores
+        function selectSubject(subjectName) {
+            document.getElementById('selectedSubjectTitle').innerText = "Estado de disponibilidad para la materia: " + subjectName;
+            document.getElementById('emptyTitle').innerText = "Sin docentes en " + subjectName;
+            document.getElementById('emptyMessage').innerText = "Actualmente no existen profesores asignados ni horarios de disponibilidad registrados para " + subjectName + ".";
+            
+            // Desplazamiento suave al apartado de docentes
+            document.getElementById('docentes').scrollIntoView({ behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>
