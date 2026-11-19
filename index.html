@@ -635,9 +635,9 @@
                 <p id="selectedSubjectTitle">Selecciona una materia arriba para ver los docentes asignados y sus horarios.</p>
             </div>
 
-            <div class="empty-teachers-box">
-                <i class="fas fa-user-slash"></i>
-                <h3 id="emptyTitle">No hay docentes registrados</h3>
+            <div class="empty-teachers-box" id="teachersBox">
+                <i class="fas fa-user-slash" id="teacherIcon"></i>
+                <h3 id="emptyTitle">seleccione materia</h3>
                 <p id="emptyMessage">Actualmente no existen docentes registrados para esta asignatura en el sistema.</p>
             </div>
         </div>
@@ -646,28 +646,24 @@
     <section class="features">
         <div class="container features-container">
             <div class="features-content">
-                <h2>Integrantes del Proyecto</h2>
-                <p>Estudiantes desarrolladores de la plataforma de tutorías para el proyecto de grado BGU:</p>
+                <h2>Métodos de enseñanza</h2>
                 <ul class="feature-list">
                     <li class="feature-item">
-                        <div class="feature-icon"><i class="fas fa-user-graduate"></i></div>
+                        <div class="feature-icon"><i class="fas fa-chalkboard-teacher"></i></div>
                         <div class="feature-text">
-                            <h4>Samuel Armijos Guerrero</h4>
-                            <p>Estudiante Desarrollador</p>
+                            <h4>Presencial</h4>
                         </div>
                     </li>
                     <li class="feature-item">
-                        <div class="feature-icon"><i class="fas fa-user-graduate"></i></div>
+                        <div class="feature-icon"><i class="fas fa-laptop"></i></div>
                         <div class="feature-text">
-                            <h4>Andres Herbas Bedon</h4>
-                            <p>Estudiante Desarrollador</p>
+                            <h4>virtual</h4>
                         </div>
                     </li>
                     <li class="feature-item">
-                        <div class="feature-icon"><i class="fas fa-user-graduate"></i></div>
+                        <div class="feature-icon"><i class="fas fa-sync-alt"></i></div>
                         <div class="feature-text">
-                            <h4>Justin Riera Soledispa</h4>
-                            <p>Estudiante Desarrollador</p>
+                            <h4>hibrida</h4>
                         </div>
                     </li>
                 </ul>
@@ -727,10 +723,28 @@
         }
 
         function selectSubject(subjectName) {
-            document.getElementById('selectedSubjectTitle').innerText = "Estado de disponibilidad para la materia: " + subjectName;
-            document.getElementById('emptyTitle').innerText = "Sin docentes en " + subjectName;
-            document.getElementById('emptyMessage').innerText = "Actualmente no existen profesores asignados ni horarios de disponibilidad registrados para " + subjectName + ".";
-            
+            let titleEl = document.getElementById('selectedSubjectTitle');
+            let emptyTitleEl = document.getElementById('emptyTitle');
+            let emptyMessageEl = document.getElementById('emptyMessage');
+            let boxEl = document.getElementById('teachersBox');
+            let iconEl = document.getElementById('teacherIcon');
+
+            if (subjectName === 'Mecatrónica') {
+                titleEl.innerText = "Docente asignado para la materia: " + subjectName;
+                iconEl.className = "fas fa-chalkboard-teacher";
+                iconEl.style.color = "#0b2545";
+                boxEl.style.border = "2px solid #0b2545";
+                emptyTitleEl.innerText = "Ivan Ortega";
+                emptyMessageEl.innerHTML = "<strong>Formas de comunicación:</strong> correo electrónico<br><strong>Medio de enseñanza:</strong> virtual";
+            } else {
+                titleEl.innerText = "Estado de disponibilidad para la materia: " + subjectName;
+                iconEl.className = "fas fa-user-slash";
+                iconEl.style.color = "#94a3b8";
+                boxEl.style.border = "2px dashed #cbd5e1";
+                emptyTitleEl.innerText = "Sin docentes en " + subjectName;
+                emptyMessageEl.innerText = "Actualmente no existen profesores asignados ni horarios de disponibilidad registrados para " + subjectName + ".";
+            }
+
             document.getElementById('docentes').scrollIntoView({ behavior: 'smooth' });
         }
 
